@@ -1,5 +1,3 @@
-# tets
-
 ## Build Setup
 
 ```bash
