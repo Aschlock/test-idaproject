@@ -1,6 +1,12 @@
 <template>
-  <div class="vehicle">
-    <img :src="vehicle.preview" class="vehicle__image" width="88" height="88" alt=""/>
+  <NuxtLink v-bind:vehicle='vehicle' :to="/vehicles/ + vehicle.id" class="vehicle">
+    <img :src="vehicle.preview"
+         style="background: lightgray;"
+         class="vehicle__image"
+         width="88px"
+         height="88px"
+         alt=""/>
+
     <div class="vehicle__text">
       <div class="vehicle__name">
         {{ vehicle.name }}
@@ -9,16 +15,21 @@
         {{ vehicle.description }}
       </div>
       <div class="vehicle__price">
-        {{vehicle.rent}} $/h
+        {{ vehicle.rent }} $/h
       </div>
     </div>
-  </div>
+  </NuxtLink>
 </template>
 
 <script>
 export default {
   name: "VehicleBlock",
-  props: ['vehicle']
+  props: ['vehicle'],
+  methods: {
+    openVehicle(vehicle) {
+      this.$router.push('/vehicles/' + vehicle.id)
+    }
+  },
 }
 </script>
 
@@ -30,8 +41,7 @@ export default {
   padding: 24px 32px;
   display: flex;
   width: 100%;
-  /*max-width: 373.33px;*/
-  /*min-width: 343px;*/
+  min-width: 300px;
   flex: 1 1 30%;
   height: 164px;
   box-sizing: border-box;
